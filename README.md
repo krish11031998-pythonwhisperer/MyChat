@@ -1,5 +1,3 @@
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
-
 # # My FlashChat
 
 I developed a real-time chat app that allows users to add friends and lets them chat with their friends!
@@ -19,7 +17,7 @@ Things to see in V2 (IN-Progress):
 * allow users to upload stories (like IG Stories);
 
 ![User Updates](Documentation/imgOne.png)
-![New Message](Documentation.imgTwo.png)
-![Chats](Documentation.imgFour.png)
-![add New Friend](Documentation.imgThree.png)
-![add friends](Documentation.imgFive.png)
+![New Message](Documentation/imgTwo.png)
+![Chats](Documentation/imgFour.png)
+![add New Friend](Documentation/imgThree.png)
+![add friends](Documentation/imgFive.png)
