@@ -1,4 +1,4 @@
-# # My FlashChat
+# My FlashChat
 
 I developed a real-time chat app that allows users to add friends and lets them chat with their friends!
 

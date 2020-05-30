@@ -110,11 +110,18 @@ class AllChatsViewController: UIViewController {
         var friends:Array<User> = [];
         if let UF = self.Friends , let LMF = self.CurrentUser?.latestMessages{
             let LM = Array(LMF.values).sorted { (M1, M2) -> Bool in
-                self.timeFormatter.date(from: M1.timeStamp)!.compare(self.timeFormatter.date(from: M2.timeStamp)!) == .orderedAscending
+                self.timeFormatter.date(from: M1.timeStamp)!.compare(self.timeFormatter.date(from: M2.timeStamp)!) == .orderedDescending
             }
-            friends = UF.filter({ (user) -> Bool in
-                return LMF.keys.contains(user.emailID)
-            })
+//            friends = UF.filter({ (user) -> Bool in
+//                return LMF.keys.contains(user.emailID)
+//            });
+            LM.forEach { (Message) in
+                for x in 0..<UF.count{
+                    if UF[x].emailID == Message.sender?.sender || UF[x].emailID == Message.reciever?.sender{
+                        friends.append(UF[x])
+                    }
+                }
+            }
         }
         return friends
         

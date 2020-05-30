@@ -96,7 +96,7 @@ class MessageTableViewCell: UITableViewCell {
             color = .systemGray;
             UDP = self.DPTwo;
         }
-        username = sender.name as! String;
+        username = sender.name;
         if let url = sender.ProfileImage, url != ""{
             UDP.downloadImage(url);
             UDP.roundedCorner(20.0);

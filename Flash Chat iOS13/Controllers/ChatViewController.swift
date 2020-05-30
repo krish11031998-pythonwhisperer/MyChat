@@ -48,7 +48,9 @@ class ChatViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Chats", style: .plain, target: self, action: #selector(self.revertBack))
         self.navigationItem.rightBarButtonItem?.isEnabled = true;
         self.navigationItem.leftBarButtonItem?.isEnabled = true;
-        self.chatTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier);
+//        self.chatTableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier);
+        self.chatTableView.register(MessageCell.self, forCellReuseIdentifier: K.cellIdentifier);
+        self.chatTableView.backgroundColor = UIColor(white: 0.95, alpha: 1);
         self.setupMessageManager();
         self.currentUser = Auth.auth().currentUser?.email ?? "a@b.com";
     }
@@ -100,8 +102,11 @@ extension ChatViewController : UITableViewDelegate ,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let safeMessages = self.allMessages, let sender = self.sender, let receiver = self.receiver else { return UITableViewCell()}
         var message = safeMessages[indexPath.row];
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell;
-        cell.updateMessage(message, sender, receiver);
+//        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell;
+//        cell.updateMessage(message, sender, receiver);
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell;
+        cell.messageLabel.text = message.messageBody ?? "Test";
+        cell.updateCell(message, sender, receiver);
 //        cell.updateUI();
 //        var user = (message.sender?.sender == sender.emailID) ? sender : receiver
 //        cell.updateUserIcon(user)
