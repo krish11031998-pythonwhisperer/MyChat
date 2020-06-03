@@ -23,8 +23,21 @@ class UserChatTableViewCell: UITableViewCell {
         // Initialization code
         
     }
+    
+    func resetUIProps(){
+        self.CharacterAvatar.isHidden = false;
+        self.UserLabel.isHidden = false;
+        self.DPImage.isHidden = false;
+        self.DPImage.roundedCorner(0.0);
+        self.CharacterAvatar.roundedCorner(0.0);
+        self.DPImage.frame.size.width = 50.0;
+        self.DPImage.frame.size.height = 50.0;
+        self.CharacterAvatar.frame.size.width = 50.0;
+        self.CharacterAvatar.frame.size.height = 50.0;
+    }
 
     func updateUserDetails(_ user:User,_ LM:Message){
+        self.resetUIProps();
         self.UserInfo = user;
         self.LM = LM;
         if let url = user.ProfileImage, url != ""{

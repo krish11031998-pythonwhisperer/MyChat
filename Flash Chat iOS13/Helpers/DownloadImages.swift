@@ -16,7 +16,7 @@ extension UIImageView{
     func downloadImage(_ urlString:String){
         
         self.image = nil
-        
+        self.contentMode = .scaleAspectFit;
         if let setImage = imageCache.object(forKey: urlString as! NSString){
             self.image = setImage;
             return
@@ -34,6 +34,7 @@ extension UIImageView{
                     DispatchQueue.main.async {
                         imageCache.setObject(downloadImage , forKey: urlString as! NSString);
                         self.image = downloadImage;
+                        
                     }
                 }.resume();
             }

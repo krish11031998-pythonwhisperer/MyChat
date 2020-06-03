@@ -20,6 +20,7 @@ class AllChatsViewController: UIViewController {
     var userManager:UserManager?;
     var selectedFrnd:User?;
     var chatFriends:[User]?;
+    var FriendsDict:[String:User]?;
     var timeFormatter = DateFormatter();
     var imageCache = NSCache<NSString,UIImage>();
     override func viewDidLoad() {
@@ -81,6 +82,9 @@ class AllChatsViewController: UIViewController {
             self.userManager = UM;
             self.CurrentUser = thisUser;
             self.Friends = friends;
+            friends.forEach { (User) in
+                self.FriendsDict?[User.emailID] = User;
+            }
             self.allChatsTable.reloadData();
         }
         
@@ -108,6 +112,10 @@ class AllChatsViewController: UIViewController {
     
     func findSpeakUsers() -> Array<User>{
         var friends:Array<User> = [];
+        var fDict:[String:User] = [:];
+        self.Friends?.forEach({ (User) in
+            fDict[User.emailID] = User;
+        })
         if let UF = self.Friends , let LMF = self.CurrentUser?.latestMessages{
             let LM = Array(LMF.values).sorted { (M1, M2) -> Bool in
                 self.timeFormatter.date(from: M1.timeStamp)!.compare(self.timeFormatter.date(from: M2.timeStamp)!) == .orderedDescending
@@ -115,13 +123,21 @@ class AllChatsViewController: UIViewController {
 //            friends = UF.filter({ (user) -> Bool in
 //                return LMF.keys.contains(user.emailID)
 //            });
-            LM.forEach { (Message) in
-                for x in 0..<UF.count{
-                    if UF[x].emailID == Message.sender?.sender || UF[x].emailID == Message.reciever?.sender{
-                        friends.append(UF[x])
-                    }
+//            LM.forEach { (Message) in
+//                for x in 0..<UF.count{
+//                    if UF[x].emailID == Message.sender?.sender || UF[x].emailID == Message.reciever?.sender{
+//                        friends.append(UF[x])
+//                    }
+//                }
+//            }
+            LM.forEach({ (Message) in
+                guard let sender = Message.sender?.sender, let cEmail = self.CurrentUser?.emailID , let receiver = Message.reciever?.sender else {return}
+                var friendKey = (sender == cEmail) ? receiver : sender;
+                if let f = fDict[friendKey]{
+                    friends.append(f)
                 }
-            }
+
+            });
         }
         return friends
         
@@ -165,12 +181,16 @@ extension AllChatsViewController:UserUpdates{
                         if !(Friends.contains(where: { (user) -> Bool in
                             return user.emailID == friend.emailID
                         })){
+                            self.FriendsDict?[friend.emailID] = friend;
                             self.Friends?.append(friend)
                         }
                     }
                 }
                 else{
                     self.Friends = friends;
+                    friends.forEach { (User) in
+                        self.FriendsDict?[User.emailID] = User;
+                    }
                 }
                 self.chatFriends = self.findSpeakUsers();
                self.allChatsTable.reloadData();

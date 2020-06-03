@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2GL-p7-Hqw">
-                        <rect key="frame" x="10" y="10" width="473" height="60.5"/>
+                        <rect key="frame" x="10" y="10" width="478" height="61"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTS-NN-noL">
                                 <rect key="frame" x="10" y="5.5" width="50" height="50"/>
@@ -38,14 +38,14 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FCr-1h-bL2">
-                                <rect key="frame" x="70" y="5.5" width="50" height="50"/>
+                                <rect key="frame" x="75" y="5.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1ib-VW-Db2"/>
                                     <constraint firstAttribute="width" constant="50" id="vHm-we-HdN"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJj-6D-wFq">
-                                <rect key="frame" x="130" y="0.0" width="343" height="60.5"/>
+                                <rect key="frame" x="135" y="0.0" width="343" height="61"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="105" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-e2-bHO">
                                         <rect key="frame" x="10" y="5" width="333" height="20"/>
@@ -78,7 +78,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMB-bg-8W0">
-                                        <rect key="frame" x="10" y="35" width="333" height="20.5"/>
+                                        <rect key="frame" x="10" y="35" width="333" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -96,7 +96,7 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FCr-1h-bL2" firstAttribute="leading" secondItem="cTS-NN-noL" secondAttribute="trailing" constant="10" id="KMw-bN-NNQ"/>
+                            <constraint firstItem="FCr-1h-bL2" firstAttribute="leading" secondItem="cTS-NN-noL" secondAttribute="trailing" constant="15" id="KMw-bN-NNQ"/>
                             <constraint firstItem="jJj-6D-wFq" firstAttribute="leading" secondItem="FCr-1h-bL2" secondAttribute="trailing" constant="10" id="aOd-qh-5Mq"/>
                             <constraint firstItem="cTS-NN-noL" firstAttribute="leading" secondItem="2GL-p7-Hqw" secondAttribute="leading" constant="10" id="fde-Za-sLj"/>
                             <constraint firstItem="cTS-NN-noL" firstAttribute="top" secondItem="2GL-p7-Hqw" secondAttribute="top" constant="15" id="xtV-nE-qpg"/>

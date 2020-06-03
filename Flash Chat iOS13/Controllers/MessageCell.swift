@@ -9,7 +9,8 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
-
+    let bubblePaddingValue:CGFloat = 10.0;
+    let messagePaddingValue:CGFloat = 16.0;
     var messageLabel = UILabel();
     var bubbleBackgroundView = UIView();
     var currentUser:User?;
@@ -32,14 +33,14 @@ class MessageCell: UITableViewCell {
 
         messageLabel.numberOfLines = 0;
         messageLabel.translatesAutoresizingMaskIntoConstraints = false;
-        let constraints = [ messageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 32),
-                            messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -32),
+        let constraints = [ messageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.messagePaddingValue),
+                            messageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1*self.messagePaddingValue),
                             messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
                             
-                            bubbleBackgroundView.topAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -16),
-                            bubbleBackgroundView.leadingAnchor.constraint(equalTo: self.messageLabel.leadingAnchor, constant: -16),
-                            bubbleBackgroundView.bottomAnchor.constraint(equalTo:self.messageLabel.bottomAnchor, constant: 16),
-                            bubbleBackgroundView.trailingAnchor.constraint(equalTo: self.messageLabel.trailingAnchor, constant: 16)
+                            bubbleBackgroundView.topAnchor.constraint(equalTo: self.messageLabel.topAnchor, constant: -1*self.bubblePaddingValue),
+                            bubbleBackgroundView.leadingAnchor.constraint(equalTo: self.messageLabel.leadingAnchor, constant: -1*self.bubblePaddingValue),
+                            bubbleBackgroundView.bottomAnchor.constraint(equalTo:self.messageLabel.bottomAnchor, constant: self.bubblePaddingValue),
+                            bubbleBackgroundView.trailingAnchor.constraint(equalTo: self.messageLabel.trailingAnchor, constant: self.bubblePaddingValue)
                             
         ]
         NSLayoutConstraint.activate(constraints);
@@ -76,10 +77,12 @@ class MessageCell: UITableViewCell {
         guard let message = self.message, let cuser = self.currentUser, let ouser = self.otherUser else {return}
         if message.sender!.sender == cuser.emailID{
             self.bubbleBackgroundView.backgroundColor = .systemBlue;
+            self.messageLabel.textColor = .white;
             self.cusender = true;
         }
         else{
             self.bubbleBackgroundView.backgroundColor = .gray;
+            self.messageLabel.textColor = .white;
             self.cusender = false;
         }
         self.cellAlignment(cusender);

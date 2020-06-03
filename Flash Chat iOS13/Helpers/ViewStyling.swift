@@ -13,7 +13,7 @@ extension UIView{
     
     func roundedCorners(_ pixels:CGFloat = 0.0){
         var width = self.layer.frame.width;
-        self.layer.cornerRadius = (pixels == 0.0) ? CGFloat(width/8.0) : pixels;
+        self.layer.cornerRadius = pixels;
         self.clipsToBounds = true;
     }
     
